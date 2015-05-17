@@ -29,6 +29,6 @@ app.controller('teamCtrl', function($scope, $routeParams, teamService, teamData)
 
 	$scope.submitGame = function() {
 		$scope.newGame.homeTeam = $scope.homeTeam.split(' ').join('').toLowerCase();
-		teamService.addNewGame($scope.newGame)
+		teamService.addNewGame($scope.newGame);
 	}
 });

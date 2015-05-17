@@ -25,6 +25,7 @@ app.config(function($routeProvider, $httpProvider){
 				teamService.getTeamData($route.current.params.team)
 					.then(function(data) {
 						console.log(data);
+						return data
 					})
 				}
 			}
