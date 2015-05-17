@@ -28,15 +28,24 @@ app.service('teamService', function($http, $q){
 				var wins = 0;
 				var losses = 0;
 				
-				for(var i = 0; i < results; i += 1) {
-					if (results[i].won === 1) {
-						var wins = wins++;
-					} else if (results[i].losses === 1) {
-						var losses = losses++;
+				for(var i = 0; i < results.length; i += 1) {
+					if (results[i].won === true) {
+						var wins = wins + 1;
+					} else if (results[i].won !== true) {
+						var losses = losses + 1;
 					}
 				}
 
+				results.push({
+					totalWins : wins
+				});
+				results.push({
+					totalLosses : losses
+				});
+				deferred.resolve(results);
 			})
+			return deferred.promise;
+
 	}
 
 });
