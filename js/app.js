@@ -20,6 +20,17 @@ app.config(function($routeProvider, $httpProvider){
 
 		.when('/teams/:team', {
 			templateUrl : 'js/teams/teamTmpl.html',
-			controller : 'teamCtrl'
+			controller : 'teamCtrl',
+			resolve : {teamData : function(teamService, $route) {
+				teamService.getTeamData($route.current.params.team)
+					.then(function(data) {
+						console.log(data);
+					})
+				}
+			}
 		})
+
+		.otherwise('/');
 });
+
+
