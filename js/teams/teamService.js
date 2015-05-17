@@ -23,29 +23,28 @@ app.service('teamService', function($http, $q){
 
 		$http.get(url)
 			
-			.then(function(data) {
-				var results = data.data.results;
+			.then(function(response) {
+				var teamData = response.data.results;
 				var wins = 0;
 				var losses = 0;
 				
-				for(var i = 0; i < results.length; i += 1) {
-					if (results[i].won === true) {
+				for(var i = 0; i < teamData.length; i += 1) {
+					if (teamData[i].won === true) {
 						var wins = wins + 1;
-					} else if (results[i].won !== true) {
+					} else if (teamData[i].won !== true) {
 						var losses = losses + 1;
 					}
 				}
 
-				results.push({
+				teamData.push({
 					totalWins : wins
 				});
-				results.push({
+				teamData.push({
 					totalLosses : losses
 				});
-				deferred.resolve(results);
+				deferred.resolve(teamData);
 			})
 			return deferred.promise;
-
 	}
 
 });

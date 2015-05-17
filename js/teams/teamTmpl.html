@@ -4,6 +4,7 @@
   </div>
   <div class="record">
       <h1> Wins: {{totalWins}} Losses: {{totalLosses}} </h1>
+      <p ng-repeat="team in teamData">{{team}}</p>
   </div>
   <div class="btn" ng-click="submitGame()"> Add a New Game </div>
   <form ng-show="toggleNewGameForm" class="form">

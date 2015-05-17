@@ -1,6 +1,6 @@
 var app = angular.module('nbaRoutes');
 
-app.controller('teamCtrl', function($scope, $routeParams, teamService, teamData){
+app.controller('teamCtrl', function($scope, $routeParams, $log, teamService, teamData){
 
 	if ($routeParams.team === 'utahjazz') {
 		$scope.homeTeam = 'Utah Jazz';
@@ -14,6 +14,7 @@ app.controller('teamCtrl', function($scope, $routeParams, teamService, teamData)
 	}
 
 	$scope.teamData = teamData;
+	// $log.log(teamData)
 	
 	$scope.newGame = {};
 	

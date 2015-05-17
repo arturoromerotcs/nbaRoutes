@@ -21,15 +21,16 @@ app.config(function($routeProvider, $httpProvider){
 		.when('/teams/:team', {
 			templateUrl : 'js/teams/teamTmpl.html',
 			controller : 'teamCtrl',
-			resolve : {teamData : function(teamService, $route) {
-				teamService.getTeamData($route.current.params.team)
-					.then(function(data) {
-						console.log(data);
-						return data
-					})
+			 resolve: {
+                teamData: function($route, teamService) { debugger
+                    return teamService.getTeamData($route.current.params.team);
+                },
+                // teamdata: function() {
+                //     return 'teamData()';
+                // }
+
 				}
-			}
-		})
+			})
 
 		.otherwise('/');
 });
