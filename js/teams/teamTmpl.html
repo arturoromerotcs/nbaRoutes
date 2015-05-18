@@ -1,14 +1,14 @@
 <div class="inner-container">
   <div class="logo">
-    <img ng-src="????????">
+    <img src={{logoPath}}>
   </div>
-  <div class="record">
-      <h1> Wins: ???????? Losses: ???????? </h1>
+  <div  class="record">
+      <h1> Wins: {{teamData[100].totalWins}} Losses: {{teamData[101].totalLosses}} </h1>
   </div>
-  <div class="btn" ng-click="????????"> Add a New Game </div>
-  <form ng-show="????????" class="form">
-    <span class="large">Opponent:</span> <br /><select ng-model="????????" ng-options="team for team in teams" class="form-control" required name="team"></select> <br /><br />
-    <span class="large">Score:</span> <br /> ????????: <input class="inputs" type="text" ng-model="????????" placeholder="Home Score"> ????????: <input type="text" class="inputs" ng-model="????????" placeholder="Opponent Score"> <br /><br />
+  <div class="btn" ng-click="toggleNewGameForm()"> Add a New Game </div>
+  <form ng-show="showNewGameForm" class="form">
+    <span class="large">Opponent:</span> <br /><select ng-model="teams" ng-options="team for team in teams" class="form-control" required name="team"></select> <br /><br />
+    <span class="large">Score:</span> <br /> {{teamData[0].homeTeam}} : <input class="inputs" type="text" ng-model="????????" placeholder="Home Score"> ????????: <input type="text" class="inputs" ng-model="????????" placeholder="Opponent Score"> <br /><br />
     <button ng-click="????????"> Submit Game </button>
   </form>
   <div class="team-data">
