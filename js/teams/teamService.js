@@ -1,10 +1,14 @@
 var app = angular.module('nbaRoutes');
 
-app.service('teamService', function($http, $q){
-
-	this.addNewGame = function(gameObject) {
+app.service('teamService', function($http, $q, $log){
+	//his method is going to take in a gameObject as the parameter. That gameObj will eventually have data about each individual game 
+	//that we'll send to parse.
+	this.addNewGame = function(gameObject) { debugger
+		//gameObj.homeTeam, points to the teams specific name 
 		var url = "https://api.parse.com/1/classes/" + gameObj.homeTeam;
-		
+		$log.console.log(ur)
+		//If it is, set a property called 'won' on the gameObj to true
+		//check to see if the home team score (gameObj.homeTeamScore) is greater then the opponents core (gameObj.opponentScore)
 		gameObj.homeTeamScore = parseInt(gameObj.homeTeamScore);
 		gameObj.opponentScore = parseInt(gameObj.opponentScore);
 		
@@ -13,8 +17,15 @@ app.service('teamService', function($http, $q){
 		} else {
 			gameObj.won = false;
 		}
-
-			$http.post(url, gameObj);
+			//POST request to parse adding the gameObj to our URL
+			//return the result of making an $http request with the 'method' of 'POST', the 'url' being the URL variable, 
+			//and 'data' being our gameObj.
+			return $http.post(url, gameObj)
+  			.success(function(gameObj) {
+    // this callback will be called asynchronously
+    // when the response is available
+    		console.log(gameObj)
+  			})
 	}
 
 	this.getTeamData = function(team) { 
@@ -22,8 +33,12 @@ app.service('teamService', function($http, $q){
 		var url = 'https://api.parse.com/1/classes/' + team;
 
 		$http.get(url)
-			
+			//We're not going to return that object but instead modify the data
+			//add a .then to the end of the $http request
+			//.then function accepts 'data' as the parameter, data will be the actual data we get back 
 			.then(function(response) {
+				//variable called results is equal to data.data.results, which is the actual games the team has played.
+				//which is an array of game objects
 				var teamData = response.data.results;
 				var wins = 0;
 				var losses = 0;
@@ -35,14 +50,12 @@ app.service('teamService', function($http, $q){
 						var losses = losses + 1;
 					}
 				}
-
-				teamData.push({
-					totalWins : wins
-				});
-				teamData.push({
-					totalLosses : losses
-				});
-				console.log(teamData)
+				//add a 'wins' property to the results array and set it equal to our wins variable and let's also set a 'losses' 
+				//property on our results array and set it equal to our losses variable
+				teamData.wins = wins;
+				teamData.losses = losses
+	
+				// console.log(teamData)
 				deferred.resolve(teamData);
 			})
 			return deferred.promise;
