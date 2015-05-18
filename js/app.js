@@ -22,12 +22,12 @@ app.config(function($routeProvider, $httpProvider){
 			templateUrl : 'js/teams/teamTmpl.html',
 			controller : 'teamCtrl',
 			 resolve: {
-                teamData: function($route, teamService) { debugger
+                teamData: function($route, teamService) { 
                     return teamService.getTeamData($route.current.params.team);
                 },
-                // teamdata: function() {
-                //     return 'teamData()';
-                // }
+                teamdata: function() {
+                    return 'teamData()';
+                }
 
 				}
 			})

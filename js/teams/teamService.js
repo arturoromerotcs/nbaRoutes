@@ -42,6 +42,7 @@ app.service('teamService', function($http, $q){
 				teamData.push({
 					totalLosses : losses
 				});
+				console.log(teamData)
 				deferred.resolve(teamData);
 			})
 			return deferred.promise;
