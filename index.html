@@ -8,14 +8,24 @@
   </head>
   <body>
     <div class="main-container" ng-controller="mainCtrl">
-      <div class="menu">
+     <input class="display-none" type="checkbox" id="toggle">
+      <label class="border inline-block menu-box left m-top-1" for="toggle">&#9776;</label> 
+      <nav class="menu">
+        <ul class="width-6_25 m-t-0_5">
+          <a href="/"><li class="light-blue font-1_2 line-height-2" >Home</li></a>
+          <a href="/#/teams/utahjazz"><li class="light-blue font-1_2 line-height-2" >UtahJazz</li></a>
+          <a href="/#/teams/losangeleslakers"><li class="light-blue font-1_2 line-height-2" >Los Angeles Lakers</li></a>
+          <a href="/#/teams/miamiheat"><li class="light-blue font-1_2 line-height-2" >Miami Heat</li></a>
+        </ul>
+      </nav>
+     <!--  <div class="menu">
         <ul> 
           <li><a href="/"> Home </a></li>
           <li><a href="/#/teams/utahjazz"> Utah Jazz </a></li>
           <li><a href="/#/teams/losangeleslakers"> Los Angeles Lakers </a></li>
           <li><a href="/#/teams/miamiheat"> Miami Heat </a></li>
         </ul>
-      </div>
+      </div> -->
       <ng-view></ng-view>
     </div>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
