@@ -3,16 +3,15 @@ var app = angular.module('nbaRoutes');
 app.service('teamService', function($http, $q, $log){
 	//his method is going to take in a gameObject as the parameter. That gameObj will eventually have data about each individual game 
 	//that we'll send to parse.
-	this.addNewGame = function(gameObject) { debugger
+	this.addNewGame = function(gameObj) { debugger
 		//gameObj.homeTeam, points to the teams specific name 
 		var url = "https://api.parse.com/1/classes/" + gameObj.homeTeam;
-		$log.console.log(ur)
+		
 		//If it is, set a property called 'won' on the gameObj to true
 		//check to see if the home team score (gameObj.homeTeamScore) is greater then the opponents core (gameObj.opponentScore)
-		gameObj.homeTeamScore = parseInt(gameObj.homeTeamScore);
-		gameObj.opponentScore = parseInt(gameObj.opponentScore);
+
 		
-		if (gameObj.homeTeamScore > gameObj.opponentScore) {
+		if (parseInt(gameObj.homeTeamScore) > parseInt(gameObj.opponentScore)) {
 			gameObj.won = true;
 		} else {
 			gameObj.won = false;
@@ -21,10 +20,13 @@ app.service('teamService', function($http, $q, $log){
 			//return the result of making an $http request with the 'method' of 'POST', the 'url' being the URL variable, 
 			//and 'data' being our gameObj.
 			return $http.post(url, gameObj)
-  			.success(function(gameObj) {
+  			.success(function(data) {
     // this callback will be called asynchronously
     // when the response is available
-    		console.log(gameObj)
+    		console.log(data)
+  			})
+  			.error(function(data) {
+  				console.log(data)
   			})
 	}
 
