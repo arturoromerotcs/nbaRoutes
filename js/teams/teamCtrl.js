@@ -41,15 +41,17 @@ app.controller('teamCtrl', function($scope, $routeParams, $log, teamService, tea
 		//take homeTeam property that we set on the scope earlier and strip out the spaces so we can use it as an endpoint in our restAPI
 		//Add a property onto our newGame object that is already on the scope called homeTeam and set it equal to Lowercase one word.
 		$scope.newGame.homeTeam = $scope.teamData[0].homeTeam.split(' ').join('').toLowerCase();
+
 		//Now we want to call the addNewGame method on our teamService method. So call addNewGame and pass it $scope.newGame
 		teamService.addNewGame($scope.newGame)
-		//You should have noticed it returns a promise. That means immediately after we call addNewGame we can call .then()
-			.then(function(){
+		//addNewGame we can call .then() because it returns a promise
+			.then(function(data){ debugger
 				//Call .then and pass a callback function, this function is then going to call the getTeamData 
 				//You should notice that the getTeamData method is also returning a promise
 				teamService.getTeamData($scope.newGame.homeTeam)
 				  //so call .then immediately after you call getTeamData() and give it a callback function which accepts parameter the data returned
 					.then(function(response){
+						$log.log(response)
 						//set a few properties on our scope based off the data
 						$scope.teamData = response
 						//reset $scope.newGame to be an empty object
@@ -59,5 +61,4 @@ app.controller('teamCtrl', function($scope, $routeParams, $log, teamService, tea
 					})
 			})
 	}
-	$log.log($scope);
 });

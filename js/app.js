@@ -15,7 +15,18 @@ app.config(function($routeProvider, $httpProvider){
 		//First Arg is the Path, the other is the route Object which has the controller property and the template property
 		.when('/', {
 			templateUrl :  'js/home/homeTmpl.html',
-			controller : 'homeCtrl'
+			controller : 'homeCtrl',
+			resolve : {
+									utahJazzData: function($route, teamService) {
+										return teamService.getTeamData('utahjazz');
+									},
+									losAngelesLakersData: function($route, teamService) {
+										return teamService.getTeamData('losangeleslakers');
+									},
+									miamiHeatData : function($route, teamService) {
+										return teamService.getTeamData('miamiheat');
+									}
+								}
 		})
 		//all three teams (Jazz, Lakers, Heat) are going to be using the same Controller and the same Template.
 		//when the user visits yoursite.com/teams/utahjazz, in our controller $routeParams.team is going to be equal to 'utahjazz'.

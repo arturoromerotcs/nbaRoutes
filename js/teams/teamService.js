@@ -19,7 +19,7 @@ app.service('teamService', function($http, $q, $log){
 			//POST request to parse adding the gameObj to our URL
 			//return the result of making an $http request with the 'method' of 'POST', the 'url' being the URL variable, 
 			//and 'data' being our gameObj.
-			return $http.post(url, gameObj)
+			return $http.post(url, {gameObj})
   			.success(function(data) {
     // this callback will be called asynchronously
     // when the response is available
@@ -57,7 +57,7 @@ app.service('teamService', function($http, $q, $log){
 				teamData.wins = wins;
 				teamData.losses = losses
 	
-				// console.log(teamData)
+				$log	.log(teamData)
 				deferred.resolve(teamData);
 			})
 			return deferred.promise;

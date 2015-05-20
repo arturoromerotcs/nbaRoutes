@@ -135,3 +135,7 @@ html, body {
   width: 150px;
   margin-bottom: 15px;
 }
+.max_33 {
+  max-width: 20%;
+  display: inline-block;
+}

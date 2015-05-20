@@ -1,3 +1,65 @@
-<div class="inner-container">
+<div class="max_33">
+  <div class="logo">
+    <img src="/images/jazz-logo.png">
+  </div>
+  <div  class="record">
+      <h1> Wins: {{utahGameData.wins}} Losses: {{utahGameData.losses}} </h1>
+  </div>
+		<div class="team-data">
+    	<div class="game" ng-repeat="game in utahGameData" ng-class="{'even' : $index % 2 === 0}">
+      	Date: {{game.createdAt | date}} <br />
+      <!-- 
+        The below question marks should render like this
+        Utah Jazz (Or name of Team) - Score of the particular Game
+        Opponent Name - Opponent Score for that Game
+      -->
 
+      	{{game.homeTeam}} - {{game.homeTeamScore}} <br />
+      	{{game.opponent}} - {{game.opponentScore}} </br />
+    	</div>
+		</div>
+</div>
+
+<div class="max_33">
+ <div class="logo">
+    <img src="/images/lakers-logo.png">
+  </div>
+  <div  class="record">
+      <h1> Wins: {{laGameData.wins}} Losses: {{laGameData.losses}} </h1>
+  </div>
+		<div class="team-data">
+    	<div class="game" ng-repeat="game in laGameData" ng-class="{'even' : $index % 2 === 0}">
+      	Date: {{game.createdAt}} <br />
+      <!-- 
+        The below question marks should render like this
+        Utah Jazz (Or name of Team) - Score of the particular Game
+        Opponent Name - Opponent Score for that Game
+      -->
+
+      	{{game.homeTeam}} - {{game.homeTeamScore}} <br />
+      	{{game.opponent}} - {{game.opponentScore}} </br />
+    	</div>
+		</div>
+</div>
+
+<div class="max_33">
+ <div class="logo">
+    <img src="/images/heat-logo.png">
+  </div>
+  <div  class="record">
+      <h1> Wins: {{heatGameData.wins}} Losses: {{heatGameData.losses}} </h1>
+  </div>
+		<div class="team-data">
+    	<div class="game" ng-repeat="game in heatGameData" ng-class="{'even' : $index % 2 === 0}">
+      	Date: {{game.createdAt}} <br />
+      <!-- 
+        The below question marks should render like this
+        Utah Jazz (Or name of Team) - Score of the particular Game
+        Opponent Name - Opponent Score for that Game
+      -->
+
+      	{{game.homeTeam}} - {{game.homeTeamScore}} <br />
+      	{{game.opponent}} - {{game.opponentScore}} </br />
+    	</div>
+		</div>
 </div>
